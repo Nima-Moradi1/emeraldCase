@@ -1,0 +1,7 @@
+this whole ui folder is created by shadcn when we install each component we want from it 
+
+e.g : 
+npx shadcn-ui@latest add progress
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add dialog
+...
