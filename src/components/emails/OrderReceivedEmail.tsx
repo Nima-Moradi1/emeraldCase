@@ -31,7 +31,7 @@ const OrderReceivedEmail = ({
   return (
     <Html>
       <Head />
-      <Preview>Your order summary and estimated delivery date</Preview>
+      <Preview>Your Order Summary And Estimated Delivery Date</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={message}>

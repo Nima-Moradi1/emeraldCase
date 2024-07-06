@@ -24,7 +24,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false)
 
   const [showConfetti, setShowConfetti] = useState<boolean>(false)
-  useEffect(() => setShowConfetti(true))
+  useEffect(() => setShowConfetti(true),[])
 
   const { color, model, finish, material } = configuration
 
@@ -61,6 +61,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
       createPaymentSession({ configId: id })
     } else {
       // need to log in
+      //we're getting the id from desctructuring the id from configuration
       localStorage.setItem('configurationId', id)
       setIsLoginModalOpen(true)
     }
@@ -71,9 +72,10 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
       <div
         aria-hidden='true'
         className='pointer-events-none select-none absolute inset-0 overflow-hidden flex justify-center'>
+          {/* confetti is the celebration we get when everything works in preview page */}
         <Confetti
           active={showConfetti}
-          config={{ elementCount: 200, spread: 90 }}
+          config={{ elementCount: 300, spread: 90 }}
         />
       </div>
 
