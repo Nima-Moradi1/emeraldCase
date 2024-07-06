@@ -31,6 +31,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const tw = COLORS.find((supportedColor) => supportedColor.value === color)?.tw
 
   const { label: modelLabel } = MODELS.options.find(
+    /* @ts-ignore */
     ({ value }) => value === model
   )!
 
