@@ -43,10 +43,14 @@ const DesignConfigurator = ({
 }: DesignConfiguratorProps) => {
   const { toast } = useToast()
   const router = useRouter()
-
+// we're simply renaming mutate to saveConfig for better understanding!
   const { mutate: saveConfig, isPending } = useMutation({
     mutationKey: ['save-config'],
     mutationFn: async (args: SaveConfigArgs) => {
+      //we're using Promise.all because we want to execute them together ( since they're not dependant on each other)
+      // what we're saving ? >> saveConfiguration() > used to save the CroppedImage
+      // 2 >> _saveConfig(args) >> to save the updated data which user did by selecting color , material , ...
+      // why did i use an underscore here ? to avoid conflict between this saveConfig and the one we're importing from actions
       await Promise.all([saveConfiguration(), _saveConfig(args)])
     },
     onError: () => {

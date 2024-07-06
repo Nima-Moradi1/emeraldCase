@@ -4,6 +4,8 @@ import DesignPreview from './DesignPreview'
 
 interface PageProps {
   searchParams: {
+    // since we're passing query params into this page , we have to define it as a string or array of string
+    // or even undefined if the query is not passed to the page
     [key: string]: string | string[] | undefined
   }
 }
