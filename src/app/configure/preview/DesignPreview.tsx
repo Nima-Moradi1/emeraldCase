@@ -40,7 +40,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     totalPrice += PRODUCT_PRICES.material.polycarbonate
   if (finish === 'textured') totalPrice += PRODUCT_PRICES.finish.textured
 
-  const { mutate: createPaymentSession } = useMutation({
+  const { mutate: createPaymentSession , isPending } = useMutation({
     mutationKey: ['get-checkout-session'],
     mutationFn: createCheckoutSession,
     onSuccess: ({ url }) => {
@@ -76,7 +76,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
           {/* confetti is the celebration we get when everything works in preview page */}
         <Confetti
           active={showConfetti}
-          config={{ elementCount: 300, spread: 90 }}
+          config={{ elementCount: 800, spread: 250 }}
         />
       </div>
 
@@ -95,7 +95,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
             Your {modelLabel} Case
           </h3>
           <div className='mt-3 flex items-center gap-1.5 text-base'>
-            <Check className='h-4 w-4 text-green-500' />
+            <Check className='h-4 w-4 text-primary' />
             In stock and ready to ship
           </div>
         </div>
@@ -161,8 +161,11 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
 
             <div className='mt-8 flex justify-end pb-12'>
               <Button
+              isLoading={isPending}
+              loadingText='Please Wait'
+              disabled={isPending}
                 onClick={() => handleCheckout()}
-                className='px-4 sm:px-6 lg:px-8'>
+                className={` ${isPending ? "opacity-50" : 'px-4 sm:px-6 lg:px-8'} `}>
                 Check out <ArrowRight className='h-4 w-4 ml-1.5 inline' />
               </Button>
             </div>
