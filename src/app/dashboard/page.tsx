@@ -22,6 +22,7 @@ import { notFound } from 'next/navigation'
 import StatusDropdown from './StatusDropdown'
 
 const Page = async () => {
+  // pretty obvious ! we get the user data and if it wasn't admin, we're gonna return 404
   const { getUser } = getKindeServerSession()
   const user = await getUser()
 
@@ -30,15 +31,19 @@ const Page = async () => {
   if (!user || user.email !== ADMIN_EMAIL) {
     return notFound()
   }
-
+// fetching all the orders
   const orders = await db.order.findMany({
     where: {
+      //only show the orders that are paid
       isPaid: true,
       createdAt: {
+        //gte >> greater than or equal (javascript)
+        // we're fetching all the orders from last week(last 7 days)
         gte: new Date(new Date().setDate(new Date().getDate() - 7)),
       },
     },
     orderBy: {
+      //sort the orders in a descending orders(new first)
       createdAt: 'desc',
     },
     include: {
@@ -46,7 +51,7 @@ const Page = async () => {
       shippingAddress: true,
     },
   })
-
+// we're gonna calculate how much money we made from last week
   const lastWeekSum = await db.order.aggregate({
     where: {
       isPaid: true,
@@ -55,10 +60,11 @@ const Page = async () => {
       },
     },
     _sum: {
+      //we're gonna aggregate on amount(the price users paid)
       amount: true,
     },
   })
-
+// this is exactly like above, just last month
   const lastMonthSum = await db.order.aggregate({
     where: {
       isPaid: true,
@@ -70,7 +76,7 @@ const Page = async () => {
       amount: true,
     },
   })
-
+// just hard-coded a goal to hit!
   const WEEKLY_GOAL = 500
   const MONTHLY_GOAL = 2500
 

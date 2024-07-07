@@ -13,7 +13,9 @@ import { useMutation } from '@tanstack/react-query'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { changeOrderStatus } from './actions'
 import { useRouter } from 'next/navigation'
-
+// the orderStatus is the type we created in prisma folder
+// we say keyof OrderStatus because we say ONLY these three are valid
+// we say typeof string because of type-safety
 const LABEL_MAP: Record<keyof typeof OrderStatus, string> = {
   awaiting_shipment: 'Awaiting Shipment',
   fulfilled: 'Fulfilled',
@@ -37,6 +39,7 @@ const StatusDropdown = ({
 
   return (
     <DropdownMenu>
+      {/* as said before, we say "asChild" because we want to define the button ourSelves and do not want the trigger to act as a button */}
       <DropdownMenuTrigger asChild>
         <Button
           variant='outline'
@@ -46,6 +49,7 @@ const StatusDropdown = ({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='p-0'>
+        {/* mapping through the only object keys of OrderStatus for dropdown */ }
         {Object.keys(OrderStatus).map((status) => (
           <DropdownMenuItem
             key={status}
@@ -55,6 +59,8 @@ const StatusDropdown = ({
                 'bg-zinc-100': orderStatus === status,
               }
             )}
+            /* we use react query to cache the new status which we defined in actions.ts
+            in order to change it in the dropdown and the database */
             onClick={() => mutate({ id, newStatus: status as OrderStatus })}>
             <Check
               className={cn(

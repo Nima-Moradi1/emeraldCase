@@ -8,6 +8,7 @@ import PhonePreview from '@/components/PhonePreview'
 import { formatPrice } from '@/lib/utils'
 
 const ThankYou = () => {
+  // we get the orderId from the url with searchParams
   const searchParams = useSearchParams()
   const orderId = searchParams.get('orderId') || ''
 
@@ -17,7 +18,7 @@ const ThankYou = () => {
     retry: true,
     retryDelay: 500,
   })
-
+// so this is phase1 , the loading state (we still don't have the payment status from stripe)
   if (data === undefined) {
     return (
       <div className='w-full mt-24 flex justify-center'>
@@ -29,7 +30,8 @@ const ThankYou = () => {
       </div>
     )
   }
-
+// here, we're still waiting for our database to update the status of payment, so we still
+// do not have the isPaid property to be true... (not yet paid on database)
   if (data === false) {
     return (
       <div className='w-full mt-24 flex justify-center'>
@@ -69,10 +71,10 @@ const ThankYou = () => {
               You made a great choice!
             </h4>
             <p className='mt-2 text-sm text-zinc-600'>
-              We at CaseCobra believe that a phone case doesn't only need to
+              We at Emeraldcase, believe that a phone case doesn't only need to
               look good, but also last you for the years to come. We offer a
               5-year print guarantee: If you case isn't of the highest quality,
-              we'll replace it for free.
+              we'll replace it for free!
             </p>
           </div>
         </div>
@@ -101,6 +103,7 @@ const ThankYou = () => {
             <div>
               <p className='font-medium text-gray-900'>Billing address</p>
               <div className='mt-2 text-zinc-700'>
+                {/* we're using address tag for better semantic html practice! */}
                 <address className='not-italic'>
                   <span className='block'>{billingAddress?.name}</span>
                   <span className='block'>{billingAddress?.street}</span>
@@ -121,7 +124,7 @@ const ThankYou = () => {
             <div>
               <p className='font-medium text-zinc-900'>Shipping Method</p>
               <p className='mt-2 text-zinc-700'>
-                DHL, takes up to 3 working days
+                 takes up to 3 working days
               </p>
             </div>
           </div>
