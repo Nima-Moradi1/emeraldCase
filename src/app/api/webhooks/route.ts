@@ -73,11 +73,11 @@ export async function POST(req: Request) {
           },
         },
       })
-//[event.data.object.customer_details.email]
+
       await resend.emails.send({
-        from: 'mnima8100@gmail.com',
+        from: 'EmeraldCase <mnima8100@gmail.com>',
         //this data object details are coming from stripe checkout session
-        to: "moradinima05@gmail.com",
+        to: [event.data.object.customer_details.email],
         subject: 'Thanks for your Order!',
         // the content we want to send (from here)
         react: OrderReceivedEmail({
