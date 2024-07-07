@@ -26,7 +26,7 @@ const OrderReceivedEmail = ({
   const baseUrl =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
-      : 'https://casecobra.vercel.app'
+      : 'https://emerald-case.vercel.app'
 
   return (
     <Html>
@@ -90,7 +90,7 @@ const OrderReceivedEmail = ({
             </Row>
             <Row>
               <Text style={footer.text}>
-                © CaseCobra, Inc. All Rights Reserved.
+                © EmeraldCase, Inc. All Rights Reserved.
               </Text>
             </Row>
           </Section>
@@ -101,6 +101,8 @@ const OrderReceivedEmail = ({
 }
 
 export default OrderReceivedEmail
+
+// from here, there are all the styles and css we need for a beautiful email
 
 const paddingX = {
   paddingLeft: '40px',

@@ -6,7 +6,7 @@ import Stripe from 'stripe'
 import { Resend } from 'resend'
 import OrderReceivedEmail from '@/components/emails/OrderReceivedEmail'
 
-// const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(process.env.RESEND_API_KEY)
  
 export async function POST(req: Request) {
   try {
@@ -74,24 +74,26 @@ export async function POST(req: Request) {
         },
       })
 
-      // await resend.emails.send({
-      //   from: 'EmeraldCase <Mnima8100@gmail.com>',
-      //   to: [event.data.object.customer_details.email],
-      //   subject: 'Thanks for your Order!',
-      //   react: OrderReceivedEmail({
-      //     orderId,
-      //     orderDate: updatedOrder.createdAt.toLocaleDateString(),
-      //     // @ts-ignore
-      //     shippingAddress: {
-      //       name: session.customer_details!.name!,
-      //       city: shippingAddress!.city!,
-      //       country: shippingAddress!.country!,
-      //       postalCode: shippingAddress!.postal_code!,
-      //       street: shippingAddress!.line1!,
-      //       state: shippingAddress!.state,
-      //     },
-      //   }),
-      // })
+      await resend.emails.send({
+        from: 'EmeraldCase <mnima8100@gmail.com>',
+        //this data object details are coming from stripe checkout session
+        to: [event.data.object.customer_details.email],
+        subject: 'Thanks for your Order!',
+        // the content we want to send (from here)
+        react: OrderReceivedEmail({
+          orderId,
+          orderDate: updatedOrder.createdAt.toLocaleDateString(),
+          // @ts-ignore
+          shippingAddress: {
+            name: session.customer_details!.name!,
+            city: shippingAddress!.city!,
+            country: shippingAddress!.country!,
+            postalCode: shippingAddress!.postal_code!,
+            street: shippingAddress!.line1!,
+            state: shippingAddress!.state,
+          },
+        }),
+      })
     }
 
     return NextResponse.json({ result: event, ok: true })
