@@ -425,6 +425,7 @@ the iphone and it gives us so many options */}
                 )}
               </p>
               <Button
+              //we get the isPending from react-query which is cool
                 isLoading={isPending}
                 disabled={isPending}
                 loadingText="Saving"
@@ -434,7 +435,7 @@ the iphone and it gives us so many options */}
                     color: options.color.value,
                     finish: options.finish.value,
                     material: options.material.value,
-                    /* @ts-ignore */  
+                    /* @ts-ignore */   
                     model: options.model.value,
                   })
                 }
