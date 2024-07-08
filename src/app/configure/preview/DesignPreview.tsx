@@ -103,7 +103,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
         <div className='sm:col-span-12 md:col-span-9 text-base'>
           <div className='grid grid-cols-1 gap-y-8 border-b border-gray-200 py-8 sm:grid-cols-2 sm:gap-x-6 sm:py-6 md:py-10'>
             <div>
-              <p className='font-medium text-zinc-950'>Highlights</p>
+              <p className='font-medium text-primary'>Highlights</p>
               <ol className='mt-3 text-zinc-700 list-disc list-inside'>
                 <li>Wireless charging compatible</li>
                 <li>TPU shock absorption</li>
@@ -112,7 +112,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
               </ol>
             </div>
             <div>
-              <p className='font-medium text-zinc-950'>Materials</p>
+              <p className='font-medium text-primary'>Materials</p>
               <ol className='mt-3 text-zinc-700 list-disc list-inside'>
                 <li>High-quality, durable material</li>
                 <li>Scratch- and fingerprint resistant coating</li>
@@ -158,8 +158,15 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
                 </div>
               </div>
             </div>
-
-            <div className='mt-8 flex justify-end pb-12'>
+            <div className='flex-col items-center justify-start text-xs text-zinc-400'>
+            <p>
+  **NOTE: To test <span className='text-primary'>Stripe</span> on Test-Mode, you can use the following card details:</p>
+            <p>- Address: Anything you desire!</p>
+            <p>- Card Number: 4242 4242 4242 4242</p>
+            <p>- Exp Date: 12/24</p>
+            <p>- CVV2: 123</p>
+            </div>
+          <div className='mt-8 flex justify-end pb-12'>
               <Button
               isLoading={isPending}
               loadingText='Please Wait'
