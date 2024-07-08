@@ -7,12 +7,12 @@ import { cn } from '@/lib/utils'
 import Phone from './Phone'
 
 const PHONES = [
-  '/testimonials/1.jpg',
   '/testimonials/2.jpg',
-  '/testimonials/3.jpg',
-  '/testimonials/4.jpg',
-  '/testimonials/5.jpg',
-  '/testimonials/6.jpg',
+  '/users/user-6.jpeg',
+  '/testimonials/jungle.jpeg',
+  '/testimonials/darabad.jpeg',
+  '/testimonials/nature.jpeg',
+  '/testimonials/sky.jpeg',
 ]
 
 function splitArray<T>(array: Array<T>, numParts: number) {
@@ -96,7 +96,7 @@ function Review({ imgSrc, className, ...props }: ReviewProps) {
   return (
     <div
       className={cn(
-        'animate-fade-in rounded-[2.25rem] bg-white p-6 opacity-0 shadow-xl shadow-slate-900/5',
+        'animate-fade-in rounded-[2.25rem] bg-transparent p-6 opacity-0 ',
         className
       )}
       style={{ animationDelay }}
