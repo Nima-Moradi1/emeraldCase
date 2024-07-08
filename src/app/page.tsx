@@ -97,7 +97,7 @@ export default function Home() {
             <div className='relative md:max-w-xl'>
               <img
                 src='/your-image.png'
-                alt='picture-on-iphone'
+                alt='your-image'
                 className='absolute w-40 lg:w-52 left-56 -top-20 select-none hidden sm:block lg:hidden xl:block'
               />
               <img
@@ -105,7 +105,7 @@ export default function Home() {
                 src='/line.png'
                 className='absolute w-20 -left-6 -bottom-6 select-none'
               />
-              <Phone className='w-64' imgSrc='/testimonials/1.jpg' />
+              <Phone className='w-64' imgSrc='/testimonials/3.jpg' />
             </div>
           </div>
         </MaxWidthWrapper>
@@ -149,11 +149,11 @@ export default function Home() {
               <div className='flex gap-4 mt-2'>
                 <img
                   className='rounded-full h-12 w-12 object-cover'
-                  src='/users/user-1.png'
+                  src='/users/user-7.jpeg'
                   alt='user'
                 />
                 <div className='flex flex-col'>
-                  <p className='font-semibold'>Jonathan</p>
+                  <p className='font-semibold'>Navid</p>
                   <div className='flex gap-1.5 items-center text-zinc-600'>
                     <Check className='h-4 w-4 stroke-[3px] text-primary' />
                     <p className='text-sm'>Verified Purchase</p>
@@ -186,11 +186,11 @@ export default function Home() {
               <div className='flex gap-4 mt-2'>
                 <img
                   className='rounded-full h-12 w-12 object-cover'
-                  src='/users/user-4.jpg'
+                  src='/users/user-6.jpeg'
                   alt='user'
                 />
                 <div className='flex flex-col'>
-                  <p className='font-semibold'>Josh</p>
+                  <p className='font-semibold'>Nima</p>
                   <div className='flex gap-1.5 items-center text-zinc-600'>
                     <Check className='h-4 w-4 stroke-[3px] text-primary' />
                     <p className='text-sm'>Verified Purchase</p>
@@ -225,18 +225,18 @@ export default function Home() {
               <img
               alt='arrow'
                 src='/arrow.png'
-                className='absolute top-[25rem] md:top-1/2 -translate-y-1/2 z-10 left-1/2 -translate-x-1/2 rotate-90 md:rotate-0'
+                className='absolute top-[45rem] md:top-1/2 -translate-y-1/2 z-10 left-1/2 -translate-x-1/2 rotate-90 md:rotate-0'
               />
 
-              <div className='relative h-80 md:h-full w-full md:justify-self-end max-w-sm rounded-xl bg-gray-900/5 ring-inset ring-gray-900/10 lg:rounded-2xl'>
+              <div className='relative h-[40rem] w-full md:justify-self-end max-w-sm rounded-xl bg-red-200'>
                 <img
-                alt='horse'
-                  src='/horse.jpg'
-                  className='rounded-md object-cover bg-white shadow-2xl ring-1 ring-gray-900/10 h-full w-full'
+                alt='a couple'
+                  src='testimonials/5.jpg'
+                  className='rounded-xl object-cover h-full w-full'
                 />
               </div>
 
-              <Phone className='w-60' imgSrc='/horse_phone.jpg' />
+              <Phone className='w-60' imgSrc='/testimonials/5.jpg' />
             </div>
           </div>
 
