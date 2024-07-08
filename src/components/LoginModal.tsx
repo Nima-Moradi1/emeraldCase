@@ -15,10 +15,12 @@ const LoginModal = ({
   setIsOpen,
 }: {
   isOpen: boolean
+  // i got the type from hovering on the setIsOpen on useState!
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }) => {
   return (
-    <Dialog onOpenChange={setIsOpen} open={isOpen}>
+    <div className={` ${isOpen ? "mt-96 sm:mt-0" : "mt-0"}`}>
+    <Dialog onOpenChange={setIsOpen} open={isOpen} >
       <DialogContent className='absolute z-[9999999]'>
         <DialogHeader>
           <div className='relative mx-auto w-24 h-24 mb-2'>
@@ -50,6 +52,7 @@ const LoginModal = ({
         </div>
       </DialogContent>
     </Dialog>
+    </div>
   )
 }
 
