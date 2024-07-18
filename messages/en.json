@@ -125,5 +125,15 @@
         "subTotal" : "Subtotal",
         "shipping2" : "Shipping" ,
         "total" : "Total"
+        } , 
+        "NotFound" : {
+          "title" : "Oops! The page you are looking for does not exist",
+          "subTitle" : "Click the button to Return to Homepage", 
+          "button" : "Return Home"
+        },
+        "Auth-Callback" : {
+          "title" : "Logging you in..." ,
+          "subTitle" : "You will be redirected automatically."
+          
         }
   }
