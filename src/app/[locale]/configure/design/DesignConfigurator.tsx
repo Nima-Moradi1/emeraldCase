@@ -11,7 +11,7 @@ import { useRef, useState } from 'react'
 import {
   COLORS,
   FINISHES,
-  MATERIALS,
+  MATERIALES,
   MODELS,
 } from '@/validators/option-validator'
 import { Label } from '@/components/ui/label'
@@ -28,7 +28,8 @@ import { useUploadThing } from '@/lib/uploadthing'
 import { useToast } from '@/components/ui/use-toast'
 import { useMutation } from '@tanstack/react-query'
 import { saveConfig as _saveConfig, SaveConfigArgs } from './actions'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 interface DesignConfiguratorProps {
   configId: string
@@ -42,7 +43,9 @@ const DesignConfigurator = ({
   imageDimensions,
 }: DesignConfiguratorProps) => {
   const { toast } = useToast()
+  const t = useTranslations('DesignPage')
   const router = useRouter()
+  const locale = usePathname().split('/')[1]
 // we're simply renaming mutate to saveConfig for better understanding!
   const { mutate: saveConfig, isPending } = useMutation({
     mutationKey: ['save-config'],
@@ -68,12 +71,12 @@ const DesignConfigurator = ({
   const [options, setOptions] = useState<{
     color: (typeof COLORS)[number]
     model: (typeof MODELS.options)[number]
-    material: (typeof MATERIALS.options)[number]
+    material: (typeof MATERIALES.options)[number]
     finish: (typeof FINISHES.options)[number]
   }>({
     color: COLORS[0],
     model: MODELS.options[0],
-    material: MATERIALS.options[0],
+    material: MATERIALES.options[0],
     finish: FINISHES.options[0],
   })
     // here , is the start of saving the cropped image
@@ -172,13 +175,15 @@ const DesignConfigurator = ({
     const byteArray = new Uint8Array(byteNumbers)
     return new Blob([byteArray], { type: mimeType })
   }
-
+  const colorTranslation = t(`colors.${options.color.label}`);
+  const colorLabel = t('colorLabel', { label: colorTranslation });
   return (
     <div className='relative mt-20 grid grid-cols-1 lg:grid-cols-3 mb-20 pb-20'>
       <div
         ref={containerRef}
-        className='relative h-[37.5rem] overflow-hidden col-span-2 w-full max-w-4xl flex items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-12 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2'>
-        <div className='relative w-60 bg-opacity-50 pointer-events-none aspect-[896/1831]'>
+        className='relative h-[37.5rem] overflow-hidden col-span-2 w-full max-w-4xl flex items-center 
+        justify-center rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700 p-12 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2'>
+        <div className='relative w-60 bg-opacity-50 dark:bg-background pointer-events-none aspect-[896/1831]'>
           <AspectRatio
             ref={phoneCaseRef}
             ratio={896 / 1831}
@@ -192,7 +197,7 @@ const DesignConfigurator = ({
               className='pointer-events-none z-50 select-none'
             />
           </AspectRatio>
-          <div className='absolute z-40 inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px] shadow-[0_0_0_99999px_rgba(229,231,235,0.6)]' />
+          <div className='absolute z-40 inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px] shadow-[0_0_0_99999px_rgba(229,231,235,0.6)] dark:shadow-none' />
           <div
           // as you can observe , the bg is dynamic based on the options
           // that we have given to in the useState and in validators
@@ -250,20 +255,20 @@ the iphone and it gives us so many options */}
         </Rnd>
       </div>
 
-      <div className='h-[37.5rem] w-full col-span-full lg:col-span-1 flex flex-col bg-white'>
+      <div className='h-[37.5rem] w-full col-span-full lg:col-span-1 flex flex-col bg-white dark:bg-background'>
         {/* just a beautiful scroll area like a select-option thing */}
         <ScrollArea className='relative flex-1 overflow-auto'>
           <div
             aria-hidden='true'
-            className='absolute z-10 inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white pointer-events-none'
+            className='absolute z-10 inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white dark:from-zinc-700 pointer-events-none'
           />
 
           <div className='px-8 pb-12 pt-8'>
             <h2 className='tracking-tight font-bold text-3xl'>
-              Customize your case
+              {t('title')}
             </h2>
 
-            <div className='w-full h-px bg-zinc-200 my-6' />
+            <div className='w-full h-px bg-zinc-200 dark:bg-zinc-400 my-6' />
 
             <div className='relative mt-4 h-full flex flex-col justify-between'>
               <div className='flex flex-col gap-6'>
@@ -275,7 +280,7 @@ the iphone and it gives us so many options */}
                       color: val,
                     }))
                   }}>
-                  <Label>Color: {options.color.label}</Label>
+                  <Label>{colorLabel}</Label>
                   <div className='mt-3 flex items-center space-x-3'>
                     {COLORS.map((color) => (
                       <RadioGroup.Option
@@ -292,7 +297,7 @@ the iphone and it gives us so many options */}
                         <span
                           className={cn(
                             `bg-${color.tw}`,
-                            'h-8 w-8 rounded-full border border-black border-opacity-10'
+                            'h-8 w-8 rounded-full border border-black dark:border-white border-opacity-10'
                           )}
                         />
                       </RadioGroup.Option>
@@ -301,7 +306,7 @@ the iphone and it gives us so many options */}
                 </RadioGroup>
 
                 <div className='relative flex flex-col gap-3 w-full'>
-                  <Label>Model</Label>
+                  <Label>{t("model")}</Label>
                   <DropdownMenu>
                     {/* 
                     the "asChild" property means the Trigger 
@@ -313,8 +318,8 @@ the iphone and it gives us so many options */}
                         variant='outline'
                         role='combobox'
                         className='w-full justify-between'>
-                        {options.model.label}
-                        <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+        {t(`models.${options.model.label}`)}
+        <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
@@ -322,10 +327,10 @@ the iphone and it gives us so many options */}
                         <DropdownMenuItem
                           key={model.label}
                           className={cn(
-                            'flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100',
+                            'flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-300 dark:hover:bg-zinc-800',
                             {
                               // change the bg of the model that was created in the list
-                              'bg-zinc-100':
+                              'dark:bg-black bg-slate-200':
                                 model.label === options.model.label,
                             }
                           )}
@@ -342,14 +347,13 @@ the iphone and it gives us so many options */}
                                 : 'opacity-0'
                             )}
                           />
-                          {model.label}
-                        </DropdownMenuItem>
+                          {t(`models.${model.label}`)}
+                         </DropdownMenuItem>
                       ))}
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-
-                {[MATERIALS, FINISHES].map(
+               {[MATERIALES, FINISHES].map(
                   ({ name, options: selectableOptions }) => (
                     <RadioGroup
                       key={name}
@@ -361,7 +365,7 @@ the iphone and it gives us so many options */}
                         }))
                       }}>
                       <Label>
-                        {name.slice(0, 1).toUpperCase() + name.slice(1)}
+                      {t(`categories.${name}`)}
                       </Label>
                       <div className='mt-3 space-y-4'>
                         {selectableOptions.map((option) => (
@@ -370,7 +374,7 @@ the iphone and it gives us so many options */}
                             value={option}
                             className={({ active, checked }) =>
                               cn(
-                                'relative block cursor-pointer rounded-lg bg-white px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between',
+                                'relative block cursor-pointer rounded-lg bg-white dark:bg-background px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between',
                                 {
                                   'border-primary': active || checked,
                                 }
@@ -379,17 +383,17 @@ the iphone and it gives us so many options */}
                             <span className='flex items-center'>
                               <span className='flex flex-col text-sm'>
                                 <RadioGroup.Label
-                                  className='font-medium text-gray-900'
+                                  className='font-medium text-gray-900 dark:text-white'
                                   as='span'>
-                                  {option.label}
+                                  {t(`${name}s.${option.label}`)}
                                 </RadioGroup.Label>
 
                                 {option.description ? (
                                   <RadioGroup.Description
                                     as='span'
-                                    className='text-gray-500'>
+                                    className='text-gray-500 dark:text-gray-300'>
                                     <span className='block sm:inline'>
-                                      {option.description}
+                                     {locale === "en" ? <>{option.description}</> : <></>} 
                                     </span>
                                   </RadioGroup.Description>
                                 ) : null}
@@ -399,7 +403,7 @@ the iphone and it gives us so many options */}
                             <RadioGroup.Description
                               as='span'
                               className='mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right'>
-                              <span className='font-medium text-gray-900'>
+                              <span className='font-medium text-gray-900 dark:text-white'>
                                 {formatPrice(option.price / 100)}
                               </span>
                             </RadioGroup.Description>
@@ -408,14 +412,14 @@ the iphone and it gives us so many options */}
                       </div>
                     </RadioGroup>
                   )
-                )}
+                )} 
               </div>
             </div>
           </div>
         </ScrollArea>
 
-        <div className='w-full px-8 h-16 bg-white'>
-          <div className='h-px w-full bg-zinc-200' />
+        <div className='w-full px-8 h-16 bg-white dark:bg-background'>
+          <div className='h-px w-full bg-zinc-200 dark:bg-background' />
           <div className='w-full h-full flex justify-end items-center'>
             <div className='w-full flex gap-6 items-center'>
               <p className='font-medium whitespace-nowrap'>
@@ -428,7 +432,7 @@ the iphone and it gives us so many options */}
               //we get the isPending from react-query which is cool
                 isLoading={isPending}
                 disabled={isPending}
-                loadingText="Saving"
+                loadingText={t('saving')}
                 onClick={() =>
                   saveConfig({
                     configId,
@@ -441,8 +445,8 @@ the iphone and it gives us so many options */}
                 }
                 size='sm'
                 className='w-full'>
-                Continue
-                <ArrowRight className='h-4 w-4 ml-1.5 inline' />
+                {t('button')}
+                <ArrowRight className='h-4 w-4 ml-1.5 inline rtl:rotate-180' />
               </Button>
             </div>
           </div>

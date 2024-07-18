@@ -5,44 +5,47 @@ import { Reviews } from '@/components/Reviews'
 import { buttonVariants } from '@/components/ui/button'
 import { ArrowRight, Check, Star } from 'lucide-react'
 import Link from 'next/link'
+import {useTranslations} from 'next-intl'
 
-export default function Home() {
+export default function Home({params : {locale}} : {params : {locale : string}}) {
+  const t = useTranslations('Home') ;
+
   return (
-    <div className='bg-slate-50 grainy-light'>
+    <div>
       <section>
         <MaxWidthWrapper className='pb-24 pt-10 lg:grid lg:grid-cols-3 sm:pb-32 lg:gap-x-0 xl:gap-x-8 lg:pt-24 xl:pt-32 lg:pb-52'>
           <div className='col-span-2 px-6 lg:px-0 lg:pt-4'>
             <div className='relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start'>
-              <div className='absolute w-28 left-0 -top-20 hidden lg:block'>
+              <div className='absolute w-28 left-0 rtl:left-3/4 rtl:ml-20 rtl:-top-0 -top-20 hidden lg:block'>
                 {/* this div, it's purely visual gradient and looks nice */}
-                <div className='absolute inset-x-0 bottom-0 bg-gradient-to-t via-slate-50/50 from-slate-50 h-28' />
+                <div className='absolute inset-x-0 bottom-0 h-28' />
                 <img src='/snake-1.png' alt='snake' className='w-full' />
               </div>
-              <h1 className='relative w-fit tracking-tight text-balance mt-16 font-bold !leading-tight text-gray-900 text-5xl md:text-6xl lg:text-7xl'>
-                Your Image on a{' '}
-                <span className='bg-primary px-2 text-white'>Custom</span>{' '}
-                Phone Case
+              <h1 className='relative w-fit tracking-tight rtl:tracking-wider text-balance mt-16 font-bold !leading-tight rtl:text-4xl rtl:text-center rtl:lg:mt-0 
+               rtl:rounded-lg rtl:p-2 rtl:md:text-5xl rtl:-ml-5 text-gray-900 dark:text-white text-4xl md:text-6xl '>
+                {t('header')}{" "}
+                {/* @ts-ignore */}
+                {locale === "en" ? <span>&#8594;</span> : <span>&#8592;</span>}
+                 {' '}
+                <span className='bg-primary dark:bg-primary rounded-md px-2 rtl:py-1 text-white dark:text-zinc-800'>{t('custom')}</span>{' '}
               </h1>
-              <p className='mt-8 text-lg lg:pr-10 max-w-prose text-center lg:text-left text-balance md:text-wrap'>
-                Capture your favorite memories with your own,{' '}
-                <span className='font-semibold'>one-of-one</span> phone case.
-                EmeraldCase allows you to protect your memories, not just your
-                phone case.
+              <p className='mt-8 text-lg lg:pr-10 max-w-prose text-center lg:text-left rtl:lg:text-right text-balance md:text-wrap'>
+                {t('subHeader')}
               </p>
 
               <ul className='mt-8 space-y-2 text-left font-medium flex flex-col items-center sm:items-start'>
                 <div className='space-y-2'>
                   <li className='flex gap-1.5 items-center text-left'>
-                    <Check className='h-5 w-5 shrink-0 text-primary' />
-                    High-quality, durable material
+                    <Check className='h-5 w-5 shrink-0 text-primary dark:text-primary' />
+                   {t('quality')}
                   </li>
                   <li className='flex gap-1.5 items-center text-left'>
-                    <Check className='h-5 w-5 shrink-0 text-primary' />5 year
-                    print guarantee
+                    <Check className='h-5 w-5 shrink-0 text-primary dark:text-primary' />
+                    {t('guarantee')}
                   </li>
                   <li className='flex gap-1.5 items-center text-left'>
-                    <Check className='h-5 w-5 shrink-0 text-primary' />
-                    Modern iPhone models supported
+                    <Check className='h-5 w-5 shrink-0 text-primary dark:text-primary' />
+                    {t('supported')}
                   </li>
                 </div>
               </ul>
@@ -86,7 +89,7 @@ export default function Home() {
                   </div>
 
                   <p>
-                    <span className='font-semibold'>1.250</span> happy customers
+                    <span className='font-semibold'>1,250</span>  {t('happy')}
                   </p>
                 </div>
               </div>
@@ -98,30 +101,30 @@ export default function Home() {
               <img
                 src='/your-image.png'
                 alt='your-image'
-                className='absolute w-40 lg:w-52 left-56 -top-20 select-none hidden sm:block lg:hidden xl:block'
+                className='dark:hidden absolute w-40 lg:w-52 left-56 rtl:hidden -top-20 select-none hidden sm:block lg:hidden xl:block'
               />
               <img
               alt='line'
                 src='/line.png'
                 className='absolute w-20 -left-6 -bottom-6 select-none'
               />
-              <Phone className='w-64' imgSrc='/testimonials/3.jpg' />
+              <Phone className='w-64' imgSrc='/testimonials/jungle.jpeg' />
             </div>
           </div>
         </MaxWidthWrapper>
       </section>
 
       {/* value proposition section */}
-      <section className='bg-slate-100 grainy-dark py-24'>
+      <section className='bg-slate-100 dark:bg-background py-24'>
         <MaxWidthWrapper className='flex flex-col items-center gap-16 sm:gap-32'>
           <div className='flex flex-col lg:flex-row items-center gap-4 sm:gap-6'>
-            <h2 className='order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl text-gray-900'>
-              What our{' '}
+            <h2 className='order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl rtl:text-4xl rtl:md-text-5xl md:text-6xl text-zink-800 dark:text-slate-50'>
+            {t('what')}{' '}
               <span className='relative px-2'>
-                customers{' '}
+              {t('customers')}{' '}
                 <Icons.underline className='hidden sm:block pointer-events-none absolute inset-x-0 -bottom-6 text-primary' />
               </span>{' '}
-              say
+              {t('say')}
             </h2>
             <img alt='snake' src='/snake-2.png' className='w-24 order-0 lg:order-2' />
           </div>
@@ -137,13 +140,11 @@ export default function Home() {
               </div>
               <div className='text-lg leading-8'>
                 <p>
-                  "The case feels durable and I even got a compliment on the
-                  design. Had the case for two and a half months now and{' '}
+                "{t('comment1Part1')}{' '}
                   <span className='p-0.5 bg-slate-800 text-white'>
-                    the image is super clear
+                  {t('comment1Bold')}
                   </span>
-                  , on the case I had before, the image started fading into
-                  yellow-ish color after a couple weeks. Love it."
+                  {" "}{t('comment1Part2')}"
                 </p>
               </div>
               <div className='flex gap-4 mt-2'>
@@ -153,10 +154,10 @@ export default function Home() {
                   alt='user'
                 />
                 <div className='flex flex-col'>
-                  <p className='font-semibold'>Navid</p>
+                  <p className='font-semibold'>{t('navid')}</p>
                   <div className='flex gap-1.5 items-center text-zinc-600'>
                     <Check className='h-4 w-4 stroke-[3px] text-primary' />
-                    <p className='text-sm'>Verified Purchase</p>
+                    <p className='text-sm'>{t('purchase')}</p>
                   </div>
                 </div>
               </div>
@@ -173,14 +174,11 @@ export default function Home() {
               </div>
               <div className='text-lg leading-8'>
                 <p>
-                  "I usually keep my phone together with my keys in my pocket
-                  and that led to some pretty heavy scratchmarks on all of my
-                  last phone cases. This one, besides a barely noticeable
-                  scratch on the corner,{' '}
+                  "{t('comment2Part1')}{' '}
                   <span className='p-0.5 bg-slate-800 text-white'>
-                    looks brand new after about half a year
+                  {t('comment2Bold')}
                   </span>
-                  . I dig it."
+                  {t('comment2Part2')}"
                 </p>
               </div>
               <div className='flex gap-4 mt-2'>
@@ -190,10 +188,10 @@ export default function Home() {
                   alt='user'
                 />
                 <div className='flex flex-col'>
-                  <p className='font-semibold'>Nima</p>
+                  <p className='font-semibold'>{t('nima')}</p>
                   <div className='flex gap-1.5 items-center text-zinc-600'>
                     <Check className='h-4 w-4 stroke-[3px] text-primary' />
-                    <p className='text-sm'>Verified Purchase</p>
+                    <p className='text-sm'>{t('purchase')}</p>
                   </div>
                 </div>
               </div>
@@ -205,17 +203,16 @@ export default function Home() {
           <Reviews />
         </div>
       </section>
-
       <section>
         <MaxWidthWrapper className='py-24'>
           <div className='mb-12 px-6 lg:px-8'>
             <div className='mx-auto max-w-2xl sm:text-center'>
-              <h2 className='order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl text-gray-900'>
-                Upload your photo and get{' '}
-                <span className='relative px-2 bg-primary text-white'>
-                  your own case
+              <h2 className='order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl rtl:text-4xl rtl:md:text-5xl text-zinc-800 dark:text-slate-50'>
+              {t('uploadTitle')}{' '}
+                <span className='relative px-2 bg-primary text-white dark:text-zinc-800'>
+                {t('uploadTitleBold')}
                 </span>{' '}
-                now
+                {' '}{t('now')}
               </h2>
             </div>
           </div>
@@ -225,47 +222,48 @@ export default function Home() {
               <img
               alt='arrow'
                 src='/arrow.png'
-                className='absolute top-[45rem] md:top-1/2 -translate-y-1/2 z-10 left-1/2 -translate-x-1/2 rotate-90 md:rotate-0'
+                className='absolute top-[45rem] md:top-1/2 -translate-y-1/2 z-10 left-1/2 -translate-x-1/2 rotate-90 md:rotate-0 rtl:md:rotate-180'
               />
 
               <div className='relative h-[40rem] w-full md:justify-self-end max-w-sm rounded-xl bg-red-200'>
                 <img
                 alt='a couple'
-                  src='testimonials/5.jpg'
+                  src='/testimonials/darabad.jpeg'
                   className='rounded-xl object-cover h-full w-full'
                 />
               </div>
 
-              <Phone className='w-60' imgSrc='/testimonials/5.jpg' />
+              <Phone className='w-60' imgSrc='/testimonials/darabad.jpeg' />
             </div>
           </div>
 
           <ul className='mx-auto mt-12 max-w-prose sm:text-lg space-y-2 w-fit'>
             <li className='w-fit'>
               <Check className='h-5 w-5 text-primary inline mr-1.5' />
-              High-quality silicone material
+             {" "} {t('quality')}
             </li>
             <li className='w-fit'>
               <Check className='h-5 w-5 text-primary inline mr-1.5' />
-              Scratch- and fingerprint resistant coating
+              {" "}{t('scratch')}
             </li>
             <li className='w-fit'>
               <Check className='h-5 w-5 text-primary inline mr-1.5' />
-              Wireless charging compatible
+              {" "}{t('wireless')}
             </li>
             <li className='w-fit'>
-              <Check className='h-5 w-5 text-primary inline mr-1.5' />5 year
-              print warranty
+              <Check className='h-5 w-5 text-primary inline mr-1.5' />
+              {" "} {t('guarantee')}
             </li>
 
-            <div className='flex justify-center'>
+            <div className='flex justify-center '>
               <Link
                 className={buttonVariants({
                   size: 'lg',
                   className: 'mx-auto mt-8',
                 })}
                 href='/configure/upload'>
-                Create your case now <ArrowRight className='h-4 w-4 ml-1.5' />
+                {t('create')} 
+                <ArrowRight className='h-4 w-4 ml-1.5 rtl:rotate-180' />
               </Link>
             </div>
           </ul>

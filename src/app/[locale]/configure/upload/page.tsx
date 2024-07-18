@@ -5,15 +5,19 @@ import { useToast } from '@/components/ui/use-toast'
 import { useUploadThing } from '@/lib/uploadthing'
 import { cn } from '@/lib/utils'
 import { Image, Loader2, MousePointerSquareDashed } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import { useState, useTransition } from 'react'
 import Dropzone, { FileRejection } from 'react-dropzone'
+
+
 
 const Page = () => {
   const { toast } = useToast()
   const [isDragOver, setIsDragOver] = useState<boolean>(false)
   const [uploadProgress, setUploadProgress] = useState<number>(0)
   const router = useRouter()
+  const t = useTranslations('UploadPage')
 
   const { startUpload, isUploading } = useUploadThing('imageUploader', {
     onClientUploadComplete: ([data]) => {
@@ -72,16 +76,16 @@ const Page = () => {
               {...getRootProps()}>
               <input {...getInputProps()} />
               {isDragOver ? (
-                <MousePointerSquareDashed className='h-6 w-6 text-zinc-500 mb-2' />
+                <MousePointerSquareDashed className='h-6 w-6 text-zinc-500 dark:text-zinc-100 mb-2' />
               ) : isUploading || isPending ? (
-                <Loader2 className='animate-spin h-6 w-6 text-zinc-500 mb-2' />
+                <Loader2 className='animate-spin h-6 w-6 text-zinc-500 dark:text-zinc-100 mb-2' />
               ) : (
                 <Image className='h-6 w-6 text-zinc-500 mb-2'  />
               )}
-              <div className='flex flex-col justify-center mb-2 text-sm text-zinc-700'>
+              <div className='flex flex-col justify-center mb-2 text-sm text-zinc-700 dark:text-zinc-400'>
                 {isUploading ? (
                   <div className='flex flex-col items-center'>
-                    <p>Uploading...</p>
+                    <p>{t("uploading")}</p>
                     <Progress
                       value={uploadProgress}
                       className='mt-2 w-40 h-2 bg-gray-300'
@@ -89,16 +93,16 @@ const Page = () => {
                   </div>
                 ) : isPending ? (
                   <div className='flex flex-col items-center'>
-                    <p>Redirecting, please wait...</p>
+                    <p>{t("redirect")}</p>
                   </div>
                 ) : isDragOver ? (
                   <p>
-                    <span className='font-semibold'>Drop file</span> to upload
+                    <span className='font-semibold dark:text-zinc-100'>{t("drop")}</span> {t("toUpload")}
                   </p>
                 ) : (
-                  <p>
-                    <span className='font-semibold'>Click to upload</span> or
-                    drag and drop
+                  <p className='rtl:flex rtl:flex-col rtl:gap-2 rtl:text-center dark:text-zinc-100'>
+                    <span className='font-semibold'>{t("click")}{" "}</span> 
+                    {t("drag")}
                   </p>
                 )}
               </div>

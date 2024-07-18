@@ -9,6 +9,7 @@ import {
 import Image from 'next/image'
 import { LoginLink, RegisterLink } from '@kinde-oss/kinde-auth-nextjs'
 import { buttonVariants } from './ui/button'
+import { useTranslations } from 'next-intl'
 
 const LoginModal = ({
   isOpen,
@@ -18,6 +19,9 @@ const LoginModal = ({
   // i got the type from hovering on the setIsOpen on useState!
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }) => {
+
+const t = useTranslations('LoginModal')
+
   return (
     <div className={` ${isOpen ? "mt-96 sm:mt-0" : "mt-0"}`}>
     <Dialog onOpenChange={setIsOpen} open={isOpen} >
@@ -31,23 +35,23 @@ const LoginModal = ({
               fill
             />
           </div>
-          <DialogTitle className='text-3xl text-center font-bold tracking-tight text-gray-900'>
-            Log in to continue
+          <DialogTitle className='text-3xl text-center font-bold tracking-tight text-gray-900 dark:text-gray-100'>
+            {t('title')}
           </DialogTitle>
           <DialogDescription className='text-base text-center py-2'>
-            <span className='font-medium text-zinc-900'>
-              Your configuration was saved!
+            <span className='font-medium text-zinc-900 dark:text-gray-100'>
+            {t('config')}
             </span>{' '}
-            Please login or create an account to complete your purchase.
+            {t('subTitle')}
           </DialogDescription>
         </DialogHeader>
 
         <div className='grid grid-cols-2 gap-6 divide-x divide-gray-200'>
           <LoginLink className={buttonVariants({ variant: 'outline' })}>
-            Login
+          {t('login')}
           </LoginLink>
           <RegisterLink className={buttonVariants({ variant: 'default' })}>
-            Sign up
+          {t('signup')}
           </RegisterLink>
         </div>
       </DialogContent>
