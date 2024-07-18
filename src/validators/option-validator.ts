@@ -50,7 +50,7 @@ export const MODELS = {
   ],
 } as const
 
-export const MATERIALS = {
+export const MATERIALES = {
   name: 'material',
   options: [
     {
@@ -85,3 +85,4 @@ export const FINISHES = {
     },
   ],
 } as const
+
