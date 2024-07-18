@@ -31,8 +31,8 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
         <Navbar />
-        <main className='flex flex-col min-h-[calc(100vh-3.5rem-1px)]'>
-          <div className='flex-1 flex flex-col h-full'>
+        <main className='flex flex-col min-h-[calc(100vh-3.5rem-1px)] bg-slate-200 dark:bg-background'>
+          <div className='flex-1 flex flex-col h-full rtl:tracking-wider '>
             <Providers>{children}</Providers>
           </div>
           <Footer />
