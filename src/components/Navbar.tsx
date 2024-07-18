@@ -1,20 +1,24 @@
+"use client"
+
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import { buttonVariants } from './ui/button'
 import { ArrowRight } from 'lucide-react'
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
+import { useTranslations } from 'next-intl'
+import DarkModeToggle from './ui/darkModeToggle'
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
+import { LangChange } from './LangChange'
 
-const Navbar = async () => {
-  const { getUser } = getKindeServerSession()
-  const user = await getUser()
 
+const Navbar = () => {
+  const t = useTranslations('Navbar');
+  const { user } = useKindeBrowserClient()
   const isAdmin = user?.email === process.env.ADMIN_EMAIL
-
   return (
-    <nav className='sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all'>
+    <nav className='sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-300 bg-slate-200 dark:bg-background backdrop-blur-lg transition-all'>
       <MaxWidthWrapper>
-        <div className='flex h-14 items-center justify-between border-b border-zinc-200'>
-          <Link href='/' className='flex z-40 font-semibold'>
+        <div className='flex h-14 items-center justify-between border-b border-gray-300'>
+          <Link href='/' className=' z-40 font-semibold rtl:flex-row-reverse'>
             <span className='text-sm mt-[1.9px]'>emerald</span><span className='text-primary'>case</span>
           </Link>
 
@@ -27,7 +31,7 @@ const Navbar = async () => {
                     size: 'sm',
                     variant: 'ghost',
                   })}>
-                  Sign out
+                  {t("signOut")}
                 </Link>
                 {isAdmin ? (
                   <Link
@@ -36,7 +40,9 @@ const Navbar = async () => {
                       size: 'sm',
                       variant: 'ghost',
                     })}>
-                    Dashboard ✨
+                    {t(
+                      "dashboard"
+                    )} ✨
                   </Link>
                 ) : null}
                 <Link
@@ -45,9 +51,11 @@ const Navbar = async () => {
                     size: 'sm',
                     className: 'hidden sm:flex items-center gap-1',
                   })}>
-                  Create case
-                  <ArrowRight className='ml-1.5 h-5 w-5' />
+                  {t("button")}
+                  <ArrowRight className='ml-1.5 h-5 w-5 rtl:rotate-180' />
                 </Link>
+                <DarkModeToggle />
+                <LangChange />
               </>
             ) : (
               <>
@@ -56,8 +64,9 @@ const Navbar = async () => {
                   className={buttonVariants({
                     size: 'sm',
                     variant: 'ghost',
-                  })}>
-                  Sign up
+                     className : 'hidden md:flex'
+                  }) }>
+                  {t("signup")}
                 </Link>
 
                 <Link
@@ -66,7 +75,9 @@ const Navbar = async () => {
                     size: 'sm',
                     variant: 'ghost',
                   })}>
-                  Login
+                  {t(
+                    "login"
+                  )}
                 </Link>
 
                 <div className='h-8 w-px bg-zinc-200 hidden sm:block' />
@@ -77,9 +88,11 @@ const Navbar = async () => {
                     size: 'sm',
                     className: 'hidden sm:flex items-center gap-1',
                   })}>
-                  Create case
-                  <ArrowRight className='ml-1.5 h-5 w-5' />
+                  {t("button")}
+                  <ArrowRight className='ml-1.5 h-5 w-5 rtl:rotate-180' />
                 </Link>
+                <DarkModeToggle />
+                <LangChange />
               </>
             )}
           </div>
