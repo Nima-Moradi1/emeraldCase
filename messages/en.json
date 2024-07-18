@@ -1,0 +1,129 @@
+{
+    "Home" : {
+        "header" : "Your Image on a Phone Case",
+        "custom" : "Custom",
+        "subHeader" : "Capture your favorite memories with your own, one-of-one phone case.EmeraldCase allows you to protect your memories, not just your phone case." ,
+        "quality" : "High-quality, durable material",
+        "guarantee" : "5 year print guarantee" ,
+        "supported" : "Modern iPhone models supported", 
+        "happy" : "happy customers", 
+        "what" : "what our",
+        "customers" : "customers",
+        "say" : "say" ,
+        "comment1Part1" : "The case feels durable and I even got a compliment on the design. Had the case for two and a half months now and" ,
+        "comment1Bold" : "the image is super clear" ,
+        "comment1Part2" : ".on the case I had before, the image started fading into yellow-ish color after a couple weeks. Love it!" ,
+        "comment2Part1" : "I usually keep my phone together with my keys in my pocket and that led to some pretty heavy scratchmarks on all of my last phone cases. This one, besides a barely noticeable scratch on the corner," ,
+        "comment2Bold" : "looks brand new after half a year !!!" ,
+        "comment2Part2" : " I dig it!" ,
+        "navid" : "Navid" ,
+        "nima" : "Nima" ,
+        "purchase" : "Verified Purchase", 
+        "uploadTitle" : "Upload your photo and get",
+        "uploadTitleBold" : "your own case",
+        "now" : "now",
+        "scratch": "Scratch- and fingerprint resistant coating",
+        "wireless" : "Wireless charging compatible",
+        "create" : "create your case now"
+    },
+    "Navbar" : {
+        "login" : "Login" ,
+        "signup" : "Signup" ,
+        "button" : "Create case" , 
+        "signOut" : "Sign out" , 
+        "dashboard" : "Dashboard"
+    }, 
+    "UploadPage" : {
+        "uploading" : "Uploading...",
+        "redirect" : "Redirecting, Please wait...",
+        "drop" : "Drop file" ,
+        "toUpload" : "to upload",
+        "click" : "Click to Upload",
+        "drag" : "or Drag and Drop"
+    } , 
+    "DesignPage" : {
+        "title" : "Customize your case" , 
+        "colorLabel": "Color: {label}",
+        "colors": {
+          "Black": "Black",
+          "Blue": "Blue",
+          "Rose": "Rose"
+        } , 
+        "models": {
+            "iPhone X": "iPhone X",
+            "iPhone 11": "iPhone 11",
+            "iPhone 12": "iPhone 12",
+            "iPhone 13": "iPhone 13",
+            "iPhone 14": "iPhone 14",
+            "iPhone 15": "iPhone 15"
+          },
+          "materials": {
+            "Silicone": "Silicone",
+            "Soft Polycarbonate": "Soft Polycarbonate"
+          },
+          "finishs": {
+            "Smooth Finish": "Smooth Finish",
+            "Textured Finish": "Textured Finish"
+          },
+          "categories": {
+            "material": "Material",
+            "finish": "Finish"
+          },
+        "model" : "Model" , 
+        "saving" : "Saving" , 
+        "button" : "Continue "
+    } , 
+    "PreviewPage" : {
+        "case" : "case" ,
+        "your" : "Your",
+        "available" : "In stock and ready to ship" , 
+        "highlights" : "Highlights" , 
+        "wireless" : "Wireless charging compatible", 
+        "tpu" : "TPU shock absorption" , 
+        "packaging" : "Packaging made from recycled materials" , 
+        "warranty" : "5 year print warranty" , 
+        "material" : "Materials" ,  
+        "quality" : "High-quality, durable material" , 
+        "resistance" : "Scratch- and fingerprint resistant coating" , 
+        "base" : "Base price" , 
+        "textured" : "Textured finish" , 
+        "polycarbonate" : "Soft polycarbonate material" , 
+        "total" : "Order total" , 
+        "note" : "**NOTE: To test " , 
+        "testMode" : "on Test-Mode, you can use the following card details: " ,
+        "address" : "- Address: Anything you desire!" ,
+        "card" : "- Card Number: 4242 4242 4242 4242" , 
+        "exp" : "- Exp Date: 12/24 " ,
+        "cvv2" : "- CVV2: 123 " ,
+        "checkout" : "Check out ", 
+        "loading" : "Please wait "
+    }, 
+    "LoginModal" : {
+        "title" : "Login to Continue" ,
+        "config" : "your configuration was saved !" ,
+        "subTitle" : "Please login or create an account to complete your purchase.", 
+        "login" : "Login" ,
+        "signup" : "Signup"
+    }, 
+    "ThankYouPage" : {
+        "loadingTitle" : "Loading your order ..." ,
+        "loadingSub" : "this won't take long.", 
+        "verifyTitle" : "Verifying your payment..." ,
+        "verifySub" : "This might take a moment." ,
+        "thanks" : "Thank You ",
+        "case" : "Your case is on the way !" ,
+        "process" : "We've received your order and are now processing it." ,
+        "orderNum" : "Order Number" ,
+        "choice" : "You made a Great choice !" , 
+        "choiceSub" : " We at Emeraldcase, believe that a phone case doesn't only need to look good, but also last you for the years to come. We offer a 5-year print guarantee: If you case isn't of the highest quality, we'll replace it for free!" ,
+        "shipping" : "Shipping address",
+        "billing" : "Billing address" ,
+        "payment" : "Payment status" ,
+        "status" : "Paid", 
+        "shipMethod" : "Shipping Method" ,
+        "shipSub" : " Takes up to 3 working days ", 
+        "subTotal" : "Subtotal",
+        "shipping2" : "Shipping" ,
+        "total" : "Total"
+        }
+  }
