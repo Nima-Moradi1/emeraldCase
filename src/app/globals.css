@@ -58,6 +58,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 /* we defined this class to rotate and transform the croppedImage to match the rotation of the main phone */
 .phone-skew {
   transform: perspective(400px) rotateY(3deg) skewX(11.1deg) skewY(-10.9deg);
