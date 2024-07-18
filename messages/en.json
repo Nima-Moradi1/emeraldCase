@@ -128,7 +128,7 @@
         } , 
         "NotFound" : {
           "title" : "Oops! The page you are looking for does not exist",
-          "subTitle" : "Click the button to Return to Homepage", 
+          "subTitle" : "Page Not Found !", 
           "button" : "Return Home"
         },
         "Auth-Callback" : {
