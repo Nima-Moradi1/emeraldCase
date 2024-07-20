@@ -29,11 +29,12 @@ const Navbar = () => {
                   href='/api/auth/logout'
                   className={buttonVariants({
                     size: 'sm',
-                    variant: 'ghost',
+                    variant: 'outline',
+                    className : "bg-transparent hover:bg-transparent mx-1 border border-slate-300"
                   })}>
                   {t("signOut")}
                 </Link>
-                <div className='h-8 w-px bg-zinc-400 hidden sm:block' />
+                <div className='h-8 w-px bg-zinc-400 block' />
                 {isAdmin ? (
                   <Link
                     href='/dashboard'

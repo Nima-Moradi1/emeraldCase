@@ -30,7 +30,7 @@
         "login" : "ورود" ,
         "signup" : "ثبت نام" ,
         "button" : "سفارش قاب" , 
-        "signOut" : "خروج از حساب" , 
+        "signOut" : "خروج " , 
         "dashboard" : "داشبورد"
     } ,
     "UploadPage" : {
