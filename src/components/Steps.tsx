@@ -41,7 +41,7 @@ const Steps = () => {
   const pathname = usePathname()
   const locale = pathname.split('/')[1]
   return (
-    <ol className='rounded-md bg-background lg:flex lg:rounded-none lg:border-l lg:border-r lg:border-gray-200 dark:lg:border-zinc-700'>
+    <ol className='rounded-md bg-slate-200 dark:bg-background lg:flex lg:rounded-none lg:border-l lg:border-r lg:border-gray-200 dark:lg:border-zinc-700'>
       {locale === "en" ? 
       <>{STEPS.map((step, i) => {
         const isCurrent = pathname.endsWith(step.url)
