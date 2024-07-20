@@ -11,11 +11,10 @@ const Footer = () => {
 
         <div className='h-full flex flex-col md:flex-row md:justify-between justify-center items-center'>
           <div className='text-center md:text-left pb-2 md:pb-0'>
-            <p className='flex gap-x-2 rtl:flex-row-reverse text-sm text-muted-foreground'>
+            <div className='flex gap-x-2 rtl:flex-row-reverse text-sm text-muted-foreground'>
               <p>&copy; {new Date().getFullYear()} </p>
               <p>  {t('title')}</p>
-            
-            </p>
+            </div>
           </div>
 
           <div className='flex items-center justify-center'>
