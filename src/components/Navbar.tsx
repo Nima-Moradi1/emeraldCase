@@ -3,17 +3,53 @@
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import { buttonVariants } from './ui/button'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Loader2 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import DarkModeToggle from './ui/darkModeToggle'
-import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
+import { LogoutLink, useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
 import { LangChange } from './LangChange'
+import { useEffect, useState } from 'react'
+
+
+type User = {
+  id: string;
+  email: string | null;
+  given_name: string | null;
+  family_name: string | null;
+  picture: string | null;
+} | null;
 
 
 const Navbar = () => {
   const t = useTranslations('Navbar');
   const { user } = useKindeBrowserClient()
-  const isAdmin = user?.email === process.env.ADMIN_EMAIL
+  const [delayedUser, setDelayedUser] = useState<User | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayedUser(user);
+      setLoading(false);
+    }, 1000);
+
+    // Cleanup the timer if the component unmounts
+    return () => clearTimeout(timer);
+  }, [user]);
+  const isAdmin = delayedUser?.email === process.env.ADMIN_EMAIL
+
+
+const Loading = () => {
+  return (
+    <>
+     <span className='ml-1.5 flex items-center gap-1'>
+            <span className='animate-flashing w-1 h-1 bg-gray-500 dark:bg-white rounded-full inline-block' />
+            <span className='animate-flashing delay-100 w-1 h-1 bg-gray-500 dark:bg-white rounded-full inline-block' />
+            <span className='animate-flashing delay-200 w-1 h-1 bg-gray-500 dark:bg-white rounded-full inline-block' />
+          </span>
+          </>
+  )
+}
+
+
   return (
     <nav className='sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-300 bg-slate-200 dark:bg-background backdrop-blur-lg transition-all'>
       <MaxWidthWrapper>
@@ -23,19 +59,18 @@ const Navbar = () => {
           </Link>
 
           <div className='h-full flex items-center space-x-4'>
-            {user ? (
+            {loading? <><Loading/></>  : user ? (
               <>
-                <Link
-                  href='/api/auth/logout'
-                  className={buttonVariants({
-                    size: 'sm',
-                    variant: 'outline',
-                    className : "bg-transparent hover:bg-transparent mx-1 border border-slate-300"
-                  })}>
+                <LogoutLink 
+                 className={buttonVariants({
+                   size: 'sm',
+                   variant: 'outline',
+                   className : "bg-transparent hover:bg-transparent mx-1 border border-slate-300"
+                 })}>
                   {t("signOut")}
-                </Link>
+                  </LogoutLink>
                 <div className='h-8 w-px bg-zinc-400 block' />
-                {isAdmin ? (
+                {loading ? <><Loading/></> : isAdmin ? (
                   <Link
                     href='/dashboard'
                     className={buttonVariants({
