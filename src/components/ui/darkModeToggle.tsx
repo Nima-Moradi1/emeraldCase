@@ -26,10 +26,10 @@ const DarkModeToggle = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-transparent mt-3">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          {t('dark')}
+          {t('light')}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          {t('light')}
+        {t('dark')}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
