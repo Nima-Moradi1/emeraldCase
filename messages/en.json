@@ -135,5 +135,11 @@
           "title" : "Logging you in..." ,
           "subTitle" : "You will be redirected automatically."
           
+        }, 
+        "Footer" : {
+          "title" : "All rights reserved",
+          "terms" : "Terms" ,
+          "privacy" : "Privacy Policy" ,
+          "cookie" : "Cookie Policy"
         }
   }
