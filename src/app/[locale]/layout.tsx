@@ -22,7 +22,7 @@ export default async function RootLayout({
   const messages = await getMessages()
   return (
     <html lang={locale} dir={locale == 'fa' ? 'rtl' : "ltr"}>
-      <body className={recursive.className}>
+      <body className={`${locale === 'en' ? `${recursive.className}` : ''}`}>
         <NextIntlClientProvider messages={messages}>
         <ThemeProvider
             attribute="class"

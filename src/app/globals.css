@@ -74,3 +74,19 @@
 .phone-skew {
   transform: perspective(400px) rotateY(3deg) skewX(11.1deg) skewY(-10.9deg);
 }
+
+
+/* styles/fonts.css */
+@font-face {
+  font-family: 'IranSans';
+  src: url('/fonts/iransans.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'YekanBakh';
+  src: url('/fonts/yekanbakh.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
