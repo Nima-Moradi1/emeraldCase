@@ -33,6 +33,7 @@ const Navbar = () => {
                   })}>
                   {t("signOut")}
                 </Link>
+                <div className='h-8 w-px bg-zinc-400 hidden sm:block' />
                 {isAdmin ? (
                   <Link
                     href='/dashboard'
@@ -80,7 +81,7 @@ const Navbar = () => {
                   )}
                 </Link>
 
-                <div className='h-8 w-px bg-zinc-200 hidden sm:block' />
+                <div className='h-8 w-px bg-zinc-400 hidden sm:block' />
 
                 <Link
                   href='/configure/upload'
