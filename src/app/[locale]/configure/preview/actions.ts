@@ -42,8 +42,6 @@ export const createCheckoutSession = async ({
     },
   })
 
-  console.log(user.id, configuration.id)
-
   if (existingOrder) {
     order = existingOrder
   } else {
@@ -77,6 +75,5 @@ export const createCheckoutSession = async ({
     },
     line_items: [{ price: product.default_price as string, quantity: 1 }],
   })
-console.log(user.id , configuration.id)
   return { url: stripeSession.url }
 }

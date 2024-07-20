@@ -2,8 +2,6 @@
 
 import createMiddleware from 'next-intl/middleware';
 
-console.log("_______________middleware is loading correctly______________");
-
 export default function customMiddleware(request : any) {
   const response = createMiddleware({
     locales: ['en', 'fa'],

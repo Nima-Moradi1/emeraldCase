@@ -31,7 +31,6 @@ export async function POST(req: Request) {
       }
       // and here we're saving the data we need from api from events to session const
       const session = event.data.object as Stripe.Checkout.Session
-      console.log("session from stripe : ",session)
       // the metadata was created in the actions page of creating a checkout session for 
       //stripe , and userId and orderId was passed as the children of metadata which we're using here
       const { userId, orderId } = session.metadata || {
