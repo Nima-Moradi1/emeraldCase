@@ -24,7 +24,7 @@ const DarkModeToggle = () => {
           <span className="sr-only">{t('toggle')}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-transparent mt-3">
+      <DropdownMenuContent align="end" className=" mt-3">
         <DropdownMenuItem onClick={() => setTheme("light")}>
           {t('light')}
         </DropdownMenuItem>
