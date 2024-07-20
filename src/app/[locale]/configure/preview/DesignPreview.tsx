@@ -77,7 +77,7 @@ const t = useTranslations('PreviewPage');
           {/* confetti is the celebration we get when everything works in preview page */}
         <Confetti
           active={showConfetti}
-          config={{ elementCount: 800, spread: 250 }}
+          config={{ elementCount: 700, spread: 130 }}
         />
       </div>
 
