@@ -25,7 +25,7 @@ const DarkModeToggle = () => {
           <span className="sr-only">{t('toggle')}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-slate-100/50 dark:bg-background mt-3">
+      <DropdownMenuContent align="end" className="bg-slate-100/50 backdrop-blur-sm dark:bg-background mt-3">
       <div className="absolute -mt-5 ml-24">
           <ChevronUp className="text-slate-300 dark:text-slate-600"/>
         </div>
