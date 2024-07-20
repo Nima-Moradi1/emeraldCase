@@ -29,7 +29,7 @@ const Navbar = () => {
     const timer = setTimeout(() => {
       setDelayedUser(user);
       setLoading(false);
-    }, 1000);
+    }, 2000);
 
     // Cleanup the timer if the component unmounts
     return () => clearTimeout(timer);
@@ -59,7 +59,7 @@ const Loading = () => {
           </Link>
 
           <div className='h-full flex items-center space-x-4'>
-            {loading? <><Loading/></>  : user ? (
+            {loading? <><Loading/></>  : delayedUser ? (
               <>
                 <LogoutLink 
                  className={buttonVariants({
@@ -95,7 +95,7 @@ const Loading = () => {
                 <LangChange />
               </>
             ) : (
-              <>
+            loading ? <><Loading/></> :  <>
                 <Link
                   href='/api/auth/register'
                   className={buttonVariants({
