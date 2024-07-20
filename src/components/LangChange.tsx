@@ -31,8 +31,9 @@ export function LangChange() {
 
   const handleLanguageChange = (value : string) => {
     setSelectedLanguage(value);
-    Cookies.set('NEXT_LOCALE', value, { expires: 365 });
-    router.push(`/${value}`);
+    // Replace the current locale in the path with the new language
+    const newUrl = window.location.pathname.replace(/^\/[a-z]{2}/, `/${value}`) + window.location.search;
+    router.push(newUrl);
     router.refresh();
   };
 
