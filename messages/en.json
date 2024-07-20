@@ -141,5 +141,10 @@
           "terms" : "Terms" ,
           "privacy" : "Privacy Policy" ,
           "cookie" : "Cookie Policy"
+        }, 
+        "DarkToggle" : {
+          "toggle" : "Toggle theme" ,
+          "dark" : "Dark" ,
+          "light" : "Light"
         }
   }
