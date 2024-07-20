@@ -146,5 +146,10 @@
           "toggle" : "Toggle theme" ,
           "dark" : "Dark" ,
           "light" : "Light"
+        }, 
+        "LangChange" : {
+          "language" : "Your Language" ,
+          "en" : "EN" ,
+          "fa" : "FA"
         }
   }

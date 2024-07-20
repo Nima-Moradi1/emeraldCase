@@ -15,10 +15,11 @@ import {
 import { ChevronDown, Globe2, GlobeIcon, Router } from "lucide-react"
 import { useRouter } from "next/navigation"
 import Cookies from "js-cookie"
+import { useTranslations } from "next-intl"
 
 
 export function LangChange() {
-  
+  const t = useTranslations('LangChange')
         const router = useRouter()
          // Initialize the selected language from the cookie or default to "en"
   const [selectedLanguage, setSelectedLanguage] = React.useState(() => {
@@ -37,7 +38,6 @@ export function LangChange() {
 
 
   return (
- 
     <DropdownMenu >
     <DropdownMenuTrigger  className="bg-transparent border-slate-300 dark:border-zinc-700 hover:bg-transparent" asChild>
       <Button variant="outline">
@@ -46,16 +46,16 @@ export function LangChange() {
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent className="w-32 mt-2 bg-slate-200 dark:bg-zinc-900">
-      <DropdownMenuLabel className="text-center">Your Language</DropdownMenuLabel>
+      <DropdownMenuLabel className="text-center">{t('language')}</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuRadioGroup value={selectedLanguage} onValueChange={handleLanguageChange}>
-        <DropdownMenuRadioItem value="en" className="flex gap-5 items-center justify-start mx-1">
+        <DropdownMenuRadioItem value="en" className="flex rtl:flex-row-reverse gap-5 rtl:gap-2 items-center justify-start mx-1">
           <Globe2 />
-          <span>EN</span>
+          <span>{t('en')}</span>
         </DropdownMenuRadioItem>
-        <DropdownMenuRadioItem value="fa" className="flex gap-5 items-center justify-start mx-1">
+        <DropdownMenuRadioItem value="fa" className="flex rtl:flex-row-reverse gap-5 rtl:gap-2 items-center justify-start mx-1">
           <Globe2 />
-          <span>FA</span>
+          <span>{t('fa')}</span>
         </DropdownMenuRadioItem>
       </DropdownMenuRadioGroup>
     </DropdownMenuContent>
