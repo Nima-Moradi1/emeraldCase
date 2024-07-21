@@ -1,3 +1,5 @@
+'use client'
+
 import { Icons } from '@/components/Icons'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import Phone from '@/components/Phone'
@@ -6,9 +8,47 @@ import { buttonVariants } from '@/components/ui/button'
 import { ArrowRight, Check, Star } from 'lucide-react'
 import Link from 'next/link'
 import {useTranslations} from 'next-intl'
+import PWAModal from '@/components/PWAModal'
+import { useEffect, useState } from 'react'
 
 export default function Home({params : {locale}} : {params : {locale : string}}) {
   const t = useTranslations('Home') ;
+const handleCloseModal = () => {
+  setShowInstallModal(false)
+}
+const handleInstallClick = () => {
+  if(prompt){
+    prompt.prompt()
+
+    prompt.userChoice.then((choiceResult : any)=> {
+      if(choiceResult.outcome === 'accepted') {
+        console.log("Accepted Pwa installation by user")
+      } else {
+        console.log("rejected !")
+      }
+      setPrompt(null)
+      setShowInstallModal(false)
+    })
+  }
+}
+const [showInstallModal,setShowInstallModal] = useState<boolean>(false)
+const [prompt,setPrompt] = useState<any>(null)
+useEffect(()=> {
+  const handleBeforeInstallPrompt = ( event : any) => {
+    event.preventDefault()
+    setPrompt(event)
+    if(!window.matchMedia("(display-mode: standalone)").matches) {
+      setShowInstallModal(true);
+    }
+  }
+  window.addEventListener('beforeinstallprompt',handleBeforeInstallPrompt)
+
+  //cleanup functions
+  return () => {
+    window.removeEventListener('beforeinstallprompt',handleBeforeInstallPrompt)
+  }
+},[])
+
 
   return (
     <div>
@@ -269,6 +309,9 @@ export default function Home({params : {locale}} : {params : {locale : string}})
           </ul>
         </MaxWidthWrapper>
       </section>
+      <MaxWidthWrapper>
+      <PWAModal show={showInstallModal} onClose={handleCloseModal} onInstall={handleInstallClick}/>
+      </MaxWidthWrapper>
     </div>
   )
 }

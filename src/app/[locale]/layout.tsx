@@ -8,10 +8,14 @@ import { constructMetadata } from '@/lib/utils'
 import {NextIntlClientProvider} from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { ThemeProvider } from "@/components/ui/themeProvider"
+import type { Viewport } from "next";
+
 
 const recursive = Recursive({ subsets: ['latin'] })
-export const metadata = constructMetadata()
-
+export const metadata = constructMetadata
+export const viewport : Viewport = {
+  themeColor: 'FFFFFF'
+}
 export default async function RootLayout({
   children,
   params: {locale}
